@@ -1,4 +1,4 @@
-# CHRYA BOX v2.0
+# CHRYA BOX 
 ### Private Messaging & Digital Secret Vault
 
 **CHRYA BOX** merupakan aplikasi web keamanan berlapis yang dirancang untuk menyediakan layanan komunikasi rahasia dan penyimpanan dokumen digital terenkripsi. Aplikasi ini mendukung penggunaan melalui desktop maupun perangkat mobile dengan antarmuka yang responsif (*responsive design*).
