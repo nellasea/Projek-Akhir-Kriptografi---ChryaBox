@@ -282,6 +282,6 @@ Penggunaan, pengembangan, dan distribusi proyek perlu memperhatikan lisensi komp
 
 ---
 
-**CHRYA BOX v2.0 — Private Messaging & Digital Secret Vault**
+**CHRYA BOX — Private Messaging & Digital Secret Vault**
 
 *Secure Communication. Encrypted Storage. Layered Protection.*
