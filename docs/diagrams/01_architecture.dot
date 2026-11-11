@@ -1,0 +1,18 @@
+digraph CHRYA {
+ graph [rankdir=LR, bgcolor="transparent", pad=.25, nodesep=.45, ranksep=.65, fontname="DejaVu Sans"];
+ node [shape=box, style="rounded,filled", fillcolor="#13263B", color="#528B96", fontcolor="#FFFFFF", fontsize=10, fontname="DejaVu Sans", margin=".20,.13"];
+ edge [color="#4AAFAF", arrowsize=.7, fontname="DejaVu Sans", fontcolor="#375E70", fontsize=9];
+ A [label="Browser\nDesktop / Mobile", fillcolor="#224559"];
+ B [label="FastAPI\nAuthentication + ACL", fillcolor="#114F4C"];
+ C [label="Cryptographic Engine\nVigenere / AES-GCM\nChaCha20 / LSB / SHA-256",fillcolor="#263458"];
+ D [label="SQLAlchemy ORM\nSQLite demo / MySQL production"];
+ E [label="Protected storage\nEncrypted files",fillcolor="#2C4055"];
+ F [label="SMTP email service\nNotification only",fillcolor="#463853"];
+ G [label="USB Key + WebAuthn\nHMAC + passkey",fillcolor="#1B4A49"];
+ A->B [label="HTTPS / localhost"];
+ B->G [label="MFA"];
+ B->C [label="Encrypt / decrypt"];
+ B->D [label="Accounts + metadata"];
+ C->E [label="Ciphertext"];
+ B->F [label="Async notice"];
+}

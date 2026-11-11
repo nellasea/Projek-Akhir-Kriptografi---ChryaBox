@@ -1,0 +1,43 @@
+CHRYA BOX v2.0 — Hasil Pengujian Otomatis & Keamanan (10 November 2026)
+========================================================================
+Command: python -m pytest tests/test_chrya.py -v
+Result : 37 passed in 72.61s (0 failed)
+
+Daftar Skenario Pengujian yang Lulus:
+1.  test_crypto_roundtrip_unicode_and_integrity — Enkripsi/dekripsi Vigenere + AES-256-GCM (HKDF) & ChaCha20-Poly1305, penolakan kunci salah & konteks salah.
+2.  test_steganography_roundtrip — LSB Steganography PNG embed & extract + penolakan kunci salah.
+3.  test_usb_hard_gate_and_status — Pengecekan pencabutan & pemasangan ulang USB dongle (HTTP 423 Locked).
+4.  test_bad_usb_material_locks_all — Penolakan akses ketika isi file chrya_usb.key tidak cocok dengan digest registry.
+5.  test_register_password_argon2_validation — Validasi panjang password & hashing Argon2id.
+6.  test_login_wrong_password_recorded_and_rate_limit — Rate limiting & lockout akun setelah 5x password salah.
+7.  test_usb_challenge_hmac_and_replay_stage — Verifikasi challenge-response HMAC-SHA256 & penolakan bypass tahap USB.
+8.  test_csrf_and_session_required — Kewajiban cookie sesi valid & header X-CSRF-Token.
+9.  test_invitation_approval_and_denial — Kewajiban kontak berstatus accepted sebelum mengirim pesan & pencegahan undangan ganda.
+10. test_message_ciphertext_permissions_reply_archive — Enkripsi pesan di database, proteksi IDOR, status read, archive, dan reply terenkripsi.
+11. test_notes_owner_only_encrypted_and_deleted — Enkripsi catatan My Vault & pembatasan akses hanya pemilik.
+12. test_file_upload_encrypted_and_owner_restriction — Enkripsi file ChaCha20-Poly1305 (CHRYAF02), pembatasan ekstensi & ukuran, akses pemilik/penerima.
+13. test_block_contact_denies_new_messages — Pemblokiran kontak mencegah pengiriman pesan.
+14. test_ledger_integrity_and_tamper — Deteksi modifikasi data pada SHA-256 audit hash chain.
+15. test_dongle_removal_revokes_sessions — Pencabutan seluruh sesi aktif ketika USB dicabut dari server.
+16. test_existing_passkey_still_requires_login_verification — Akun dengan passkey wajib memverifikasi biometrik saat login.
+17. test_extra_passkey_endpoint_rejects_anonymous_csrf_and_old_session — Pendaftaran passkey tambahan wajib sesi segar (<10 menit) & CSRF valid.
+18. test_login_page_has_visible_biometric_enroll_controls — Pemeriksaan elemen UI autentikasi & biometrik.
+19. test_camera_face_enroll_and_login_requires_password_and_usb — Alur penuh Register & Login wajah menggunakan citra wajah nyata dengan model ONNX YuNet + SFace 128-D (FC02).
+20. test_camera_face_cannot_be_added_to_existing_passkey_account_without_login — Pencegahan pengambilalihan biometrik tanpa login penuh.
+21. test_face_camera_syntactic_and_security_guards — Validasi format frame JPEG, enkripsi/dekripsi template wajah terikat AAD user_id.
+22. test_face_registration_is_mandatory_before_first_login_session — Kewajiban menyelesaikan registrasi wajah sebelum memperoleh sesi login + penolakan wajah orang lain.
+23. test_registration_completion_page_and_login_button_visible — Verifikasi UI penyelesaian registrasi.
+24. test_username_unique_across_clients_and_case_normalization — Normalisasi & keunikan username lintas perangkat pada satu database.
+25. test_username_rejection_for_invalid_format_and_unique_database_constraint — Validasi format username & constraint UNIQUE database.
+26. test_cross_device_find_invite_accept_message_and_reply — Skenario 2 perangkat berbeda (laptop & HP LAN) mencari kontak, menerima undangan, mengirim & membalas pesan terenkripsi.
+27. test_local_lan_origin_rejects_unrelated_sites — Validasi ketat header Origin & Referer terhadap serangan lintas situs.
+28. test_search_literal_underscore_no_wildcard_and_pending_state — Pencegahan enumerasi wildcard SQL LIKE ('_' dan '%').
+29. test_front_camera_capture_single_frame_only — Validasi parameter frame kamera.
+30. test_front_camera_ui_shows_one_capture_only — Validasi tombol pemindaian kamera pada UI.
+31. test_audit_A_sface_two_real_people_liveness_spoofing_and_rate_limit — Pengujian 2 orang berbeda dengan wajah nyata (SFace 128-D), penolakan multi-wajah, penolakan frame replay identik, kegagalan kamera fail-closed, dan rate limit 5x gagal Face Unlock.
+32. test_audit_B_usb_drive_change_rotation_revocation_and_lost_handling — Pelacakan perpindahan folder/huruf drive USB, rotasi dongle, pembuatan USB Key per akun, dan pencabutan USB hilang/lama.
+33. test_audit_C_domain_key_separation_tamper_rotation_and_backup — Pemisahan sub-kunci HKDF per domain, penolakan ciphertext yang dimodifikasi 1-bit, rotasi kunci KeyRing, dan backup/restore master.key dengan passphrase Scrypt.
+34. test_audit_D_and_E_contacts_and_messaging_full_lifecycle — Pencarian nama lengkap, status not_found, batal undangan, hapus kontak, unblock, unarchive, pin pesan, cari pesan, hapus pesan & hapus percakapan.
+35. test_audit_F_and_G_file_vault_and_my_vault_features — Kategori & pencarian file, preview file, share & revoke akses file, hapus file; edit catatan, kategori & pencarian catatan My Vault.
+36. test_audit_H_I_J_K_notifications_security_center_ledger_and_smtp — Mark read/all read, delete notifikasi, pengiriman email melalui server SMTP nyata, Ed25519 signed checkpoint & external anchor, ganti password, backup DB, dan pemulihan akun dengan Recovery Code.
+37. test_audit_K_alembic_https_cert_sql_injection_xss_and_restart_persistence — Generator sertifikat HTTPS TLS, ketahanan terhadap SQL Injection & XSS, serta persistensi data saat migrasi ulang skema.

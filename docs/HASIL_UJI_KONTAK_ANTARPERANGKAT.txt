@@ -1,0 +1,32 @@
+CHRYA BOX — Revisi Kontak dan Pesan Antarperangkat
+Tanggal: 2026-11-09
+
+Pengujian backend:
+  python -m pytest tests/test_chrya.py -q
+  Hasil: 28 passed (dengan warning deprecation datetime, bukan kegagalan)
+
+Kasus utama yang diuji:
+  [OK] Pencarian username akun berbeda via database yang sama
+  [OK] Hasil pencarian tidak memuat email pengguna lain
+  [OK] Undangan kontak dibuat oleh klien A
+  [OK] Undangan masuk muncul pada klien B
+  [OK] Klien B menerima undangan
+  [OK] A mendapat status kontak Accepted
+  [OK] Pesan A -> B tersimpan sebagai ciphertext
+  [OK] Inbox B menerima pesan yang dikirim A
+  [OK] B dapat membaca dan membalas A
+  [OK] Origin situs asing ditolak (403)
+  [OK] Same-host HTTP pada alamat IP private diterima bila fitur LAN diaktifkan
+  [OK] Karakter underscore pada pencarian tidak dianggap wildcard
+
+Pengujian UI:
+  Browser Chromium dengan frontend asli yang terhubung ke FastAPI TestClient.
+  [OK] Search username -> Tambah kontak -> Terima di mobile -> Compose -> Inbox
+  [OK] Tidak ada error JavaScript selama alur utama.
+  Screenshot: 21_cari_username_desktop.png, 22_undangan_mobile.png, 23_pesan_masuk_mobile.png.
+
+Batasan:
+  - Tidak dilakukan uji koneksi perangkat HP fisik melalui Wi-Fi atau Internet.
+  - Tidak dilakukan uji kamera wajah/sidik jari secara fisik pada HP.
+  - HTTPS tetap diperlukan untuk kamera/WebAuthn pada HP.
+  - Uji otomatis memakai sesi autentikasi buatan hanya dalam test harness, bukan bypass login produksi.

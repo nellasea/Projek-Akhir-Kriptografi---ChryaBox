@@ -1,0 +1,7 @@
+digraph CRYPT {
+ graph [rankdir=LR,bgcolor="transparent",pad=.2, nodesep=.35, ranksep=.42];
+ node [shape=box, style="rounded,filled",fillcolor="#15293F",color="#548F9D",fontcolor="white",fontname="DejaVu Sans",fontsize=9,margin=".17,.1"];
+ edge [color="#39A7A1",arrowsize=.7];
+ subgraph cluster_text {label="TEXT";fontcolor="#355D68";color="#6BB4A9";style="rounded";t1[label="Plaintext"];t2[label="Vigenere\n(Classical)"];t3[label="AES-256-GCM\n(nonce unique)"];t4[label="Ciphertext DB",fillcolor="#15514B"];t1->t2->t3->t4;}
+ subgraph cluster_file {label="FILE";fontcolor="#355D68";color="#9E8CCD";style="rounded";f1[label="File binary"];f2[label="Random file key"];f3[label="ChaCha20-Poly1305"];f4[label="Protected storage",fillcolor="#2E365C"];f1->f3->f4;f2->f3;}
+}

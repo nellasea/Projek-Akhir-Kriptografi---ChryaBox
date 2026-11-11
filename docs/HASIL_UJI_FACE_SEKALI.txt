@@ -1,0 +1,9 @@
+CHRYA BOX — Revisi Face Unlock Satu Foto (2026-11-09)
+===================================================
+pytest tests/test_chrya.py -q : 30 passed
+- Backend menerima tepat 1 foto dan menolak 0/2 foto.
+- Pendaftaran wajah dilakukan sebelum login pertama.
+- Login mencocokkan template dari akun terdaftar.
+- Password + USB Key tetap wajib.
+- Alur kontak dan pesan antarperangkat tetap tercakup.
+- Uji biometrik menggunakan data fitur buatan dan mock; webcam fisik, ketahanan terhadap foto/video, dan sensor fingerprint harus diuji terpisah.

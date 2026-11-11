@@ -1,0 +1,17 @@
+digraph FLOW {
+ graph [rankdir=TB,bgcolor="transparent",pad=.2,nodesep=.23,ranksep=.36];
+ node [shape=box,style="rounded,filled",fillcolor="#142A42",color="#5C9EAF",fontcolor="white",fontname="DejaVu Sans",fontsize=9,margin=".17,.1"];
+ edge [color="#4BAEA9",fontcolor="#3B6775",fontsize=8,arrowsize=.7];
+ A [label="Register / Login\nUsername + Password (Argon2id)"];
+ B [label="USB file challenge-response\nHMAC-SHA256"];
+ C [label="WebAuthn verification\nWindows Hello / Face ID / Fingerprint"];
+ D [label="Personal Vault Dashboard",fillcolor="#155C56"];
+ E [label="Send contact invitation"];
+ F [label="Contact accepts"];
+ G [label="Compose message / file"];
+ H [label="Vigenere + AES-GCM (text)\nChaCha20-Poly1305 (file)",fillcolor="#26375D"];
+ I [label="Save ciphertext + metadata\nAudit SHA-256 hash chain"];
+ J [label="SMTP notification (no message content)"];
+ K [label="Recipient opens vault\nDecrypt after authorization"];
+ A->B->C->D->E->F->G->H->I->J->K;
+}

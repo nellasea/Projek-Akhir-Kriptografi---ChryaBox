@@ -1,0 +1,18 @@
+digraph ER {
+ graph [rankdir=LR,bgcolor="transparent",pad=.25,nodesep=.55,ranksep=.8];
+ node [shape=record,style="rounded,filled",fillcolor="#16283F",color="#58859B",fontcolor="white",fontname="DejaVu Sans",fontsize=10,margin=".17,.1"];
+ edge [color="#48A89F",arrowsize=.65,fontsize=8,fontcolor="#567D85"];
+ users [label="{USERS|id · username · email\npassword_hash · handle}",fillcolor="#16514E"];
+ creds [label="{USER_CREDENTIALS|user_id · public_key\ncredential_id · sign_count}"];
+ flows [label="{AUTH_FLOWS|user_id · challenge\nusb_verified}"];
+ sessions [label="{SESSIONS|user_id · csrf\nexpires}"];
+ contacts [label="{CONTACT_REQUESTS|sender_id · recipient_id\nstatus}"];
+ messages [label="{MESSAGES|sender_id · receiver_id\nsubject_ciphertext · body_ciphertext}"];
+ files [label="{FILES|owner_id · receiver_id\nstorage_id · filename_ciphertext}"];
+ vaults [label="{VAULTS|owner_id · title_ciphertext\nbody_ciphertext}"];
+ notifications [label="{NOTIFICATIONS|user_id · message_id}"];
+ emails [label="{EMAIL_LOGS|sender_id · message_id / file_id\nstatus · attempts}"];
+ chain [label="{BLOCKCHAIN_LOGS|index · previous_hash\ncurrent_hash}",fillcolor="#333B59"];
+ users -> creds;users->flows;users->sessions;users->contacts;users->messages;users->files;users->vaults;users->notifications;
+ messages->notifications;messages->emails;files->emails;users->chain [style=dashed];
+}
